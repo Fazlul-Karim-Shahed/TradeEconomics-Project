@@ -3,6 +3,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const IndicatorRouter = require('./Routers/IndicatorRouters')
 
 dotenv.config()
 const app = express()
@@ -16,6 +17,10 @@ mongoose.connect(DATABASE).then(() => {
 })
 
 const port = 1229
+
+
+
+app.use('/api/indicator', IndicatorRouter)
 
 
 app.get('/', (req, res) => {
