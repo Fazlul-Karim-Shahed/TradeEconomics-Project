@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Routes } from 'react-router'
 import Admin from '../Admin/Admin'
+import About from './About/About'
 import Contact from './Contact/Contact'
 import Home from './Home/Home'
+import Tools from './Tools/Tools'
 
 
 const mapStateToProps = (state) => {
@@ -35,8 +37,9 @@ const Body = (props) => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/tools' element={<Tools />} />
         <Route path='*' element={<h1>Sorry page not found</h1>} />
-
         {admin}
       </Routes>
 

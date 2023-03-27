@@ -2,7 +2,6 @@
 const te = require('tradingeconomics')
 
 
-
 const getIndicatorData = async (req, res) => {
 
     try {

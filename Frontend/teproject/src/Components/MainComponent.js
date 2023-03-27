@@ -1,22 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useLocation } from 'react-router'
 import Body from './Body/Body'
+import Header from './Header/Header'
+
 
 
 const mapStateToProps = (state) => {
 
-  console.log(state)
-
-  return{
-
+  return {
+    role: state.role
   }
+
 }
 
 
 const MainComponent = (props) => {
+
+
+  let { pathname } = useLocation()
+  console.log(pathname)
+
+
   return (
     <div>
-        <Body />
+      <Header />
+      <Body />
     </div>
   )
 }
