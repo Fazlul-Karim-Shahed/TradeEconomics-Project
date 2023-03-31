@@ -5,7 +5,8 @@ import Admin from '../Admin/Admin'
 import About from './About/About'
 import Contact from './Contact/Contact'
 import Home from './Home/Home'
-import Tools from './Tools/Tools'
+import Login from './Login/Login'
+import Compare from './Compare/Compare'
 
 
 const mapStateToProps = (state) => {
@@ -38,7 +39,8 @@ const Body = (props) => {
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
-        <Route path='/tools' element={<Tools />} />
+        <Route path='/compare' element={<Compare />} />
+        <Route path='/login' element={<Login />} />
         <Route path='*' element={<h1>Sorry page not found</h1>} />
         {admin}
       </Routes>
