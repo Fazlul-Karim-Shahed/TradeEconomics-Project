@@ -4,14 +4,15 @@ import { Table } from 'reactstrap'
 
 const mapStateToProps = (state) => {
     return {
-        historyArray: state.historyArray
+        historyArray: state.historyArray,
+        authenticated: state.authenticated
     }
 }
 
 const History = (props) => {
 
     let hisShow
-    if (props.historyArray.length === 0) hisShow = <p className='text-center p-5'>No history</p>
+    if (props.historyArray.length === 0) hisShow = <h5 className='text-center p-5'>{props.authenticated ? 'No history found' : 'Please login'}</h5>
     if (props.historyArray && props.historyArray.length != 0) {
         hisShow = props.historyArray.map((item, index) => {
             return <tr className='text-center'>
