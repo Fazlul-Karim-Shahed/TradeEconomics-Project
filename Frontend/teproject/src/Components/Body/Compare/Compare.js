@@ -4,9 +4,17 @@ import { connect } from 'react-redux'
 import { Alert } from 'reactstrap'
 import { getCompareApi } from '../../../Api/CompareApi'
 import CompareChart from '../Chart/CompareChart'
+import History from '../History/History'
+import { CreateHistoryApi, GetHistoryApi } from '../../../Api/HistoryApi'
+import { HISTORY_UPDATE } from '../../../Redux/ActionTypes'
+import { checkAuth } from '../../../Functions/AuthFunctions'
 
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => {
+  return {
+    decodedToken: state.decodedToken
+  }
+}
 
 const Compare = (props) => {
 
@@ -36,7 +44,7 @@ const Compare = (props) => {
           onSubmit={(values) => {
             getCompareApi(values.country1, values.country2, values.indicator).then(data => {
 
-              if (data.error) { setMessage(data.Message) }
+              if (data.error || data.name === 'AxiosError') throw data.message
               else {
                 setMessage(data.Message)
                 setChartData({
@@ -47,9 +55,23 @@ const Compare = (props) => {
                   country1: values.country1,
                   country2: values.country2
                 })
+
+                if (checkAuth()) {
+                  CreateHistoryApi({
+                    country_1: values.country1,
+                    country_2: values.country2,
+                    time: new Date().toUTCString(),
+                    userId: props.decodedToken._id,
+                    indicator: values.indicator
+                  }).then(data => {
+                    GetHistoryApi(props.decodedToken._id).then(data => props.dispatch(HISTORY_UPDATE(data.value ? data.value : [])))
+                  })
+                }
+                else console.log('To get history please signin')
+
               }
             })
-            // .catch(err => { console.log(err) })
+              .catch(err => setMessage(err))
           }}
 
         >
@@ -98,6 +120,7 @@ const Compare = (props) => {
 
       <div>
         <CompareChart data={chartData} />
+        <History />
       </div>
 
     </div>

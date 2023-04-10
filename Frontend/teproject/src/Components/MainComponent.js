@@ -1,15 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router'
 import Body from './Body/Body'
 import Header from './Header/Header'
-
+import { AUTHENTICATED, HISTORY_UPDATE } from '../Redux/ActionTypes'
+import { checkAuth } from '../Functions/AuthFunctions'
+import { GetHistoryApi } from '../Api/HistoryApi'
+import Footer from './Footer/Footer'
 
 
 const mapStateToProps = (state) => {
-
+  console.log(state)
   return {
-    role: state.role
+    decodedToken: state.decodedToken
   }
 
 }
@@ -18,14 +20,16 @@ const mapStateToProps = (state) => {
 const MainComponent = (props) => {
 
 
-  let { pathname } = useLocation()
-  console.log(pathname)
-
+  props.dispatch(AUTHENTICATED)
+  if (checkAuth() && props.decodedToken._id != undefined) {
+    GetHistoryApi(props.decodedToken._id).then(data => props.dispatch(HISTORY_UPDATE(data.value ? data.value : [])))
+  }
 
   return (
     <div>
       <Header />
       <Body />
+      <Footer />
     </div>
   )
 }

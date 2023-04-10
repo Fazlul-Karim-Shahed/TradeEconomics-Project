@@ -35,7 +35,7 @@ const Header = (props) => {
                             <Link className='text-light text-decoration-none' to='/contact'>Contact</Link>
                         </NavItem>
                         <NavItem className='mx-2'>
-                            <Link className='text-light text-decoration-none' to='/login'>Login</Link>
+                            <Link className='text-light text-decoration-none' to='/signin'>Login</Link>
                         </NavItem>
                     </Nav>
 

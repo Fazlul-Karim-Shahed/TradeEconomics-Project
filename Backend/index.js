@@ -3,7 +3,10 @@ const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const CompareRouter = require('./Routers/CompareRouters')
+const CompareRouter = require('./Routers/CompareRouter')
+const HistoryRouter = require('./Routers/HistoryRouter')
+const UserRouter = require('./Routers/UserRouter')
+// const SignupRouter = require('./Routers/SignupRouter')
 
 dotenv.config()
 const app = express()
@@ -22,6 +25,9 @@ const port = 1229
 
 
 app.use('/api/compare', CompareRouter)
+app.use('/api/history', HistoryRouter)
+app.use('/api/user', UserRouter)
+
 
 
 app.get('/', (req, res) => {

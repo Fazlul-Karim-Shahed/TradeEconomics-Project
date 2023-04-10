@@ -38,7 +38,7 @@ const CompareChart = (props) => {
             },
             title: {
                 display: true,
-                text: 'Chart.js Bar Chart',
+                text: 'Comparison Bar Chart',
             },
         },
     };
@@ -62,7 +62,7 @@ const CompareChart = (props) => {
 
 
     return (
-        <div>
+        <div className='px-5'>
             <Bar options={options} data={data} />
         </div>
     )

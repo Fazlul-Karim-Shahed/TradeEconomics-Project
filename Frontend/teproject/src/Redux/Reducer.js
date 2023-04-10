@@ -1,17 +1,42 @@
 
-import {  } from './ActionTypes'
+import { AUTHENTICATED } from './ActionTypes'
 
 const initialState = {
     text: 'Hello world',
     purpose: 'test',
-    role: 'user'
+    role: 'user',
+    decodedToken: {},
+    authenticated: false,
+    historyArray: []
 }
 
 
-const reducer = (state=initialState, action) => {
+const reducer = (state = initialState, action) => {
 
-    if(action.type === ''){
-        return
+    if (action.type === AUTHENTICATED.type) {
+
+        return {
+            ...state,
+            authenticated: action.value.authenticated,
+            decodedToken: action.value.decodedToken
+        }
+    }
+
+    if (action.type === 'SET_AUTH') {
+
+        return {
+            ...state,
+            authenticated: action.value.authenticated,
+            decodedToken: action.value.decodedToken
+        }
+    }
+
+    if (action.type === 'HISTORY_UPDATE') {
+
+        return {
+            ...state,
+            historyArray: action.value
+        }
     }
 
     return state

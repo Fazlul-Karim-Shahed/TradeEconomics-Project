@@ -1,4 +1,4 @@
-const { getCompareData } = require('./RouterFunctions/CompareRoutersFunctions/GetCompareData')
+const { getCompareData } = require('./RouterFunctions/CompareRouterFunctions/GetCompareData')
 
 
 const router = require('express').Router()
