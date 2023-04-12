@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { Route, Routes } from 'react-router'
 import Admin from '../Admin/Admin'
 import About from './About/About'
-import Contact from './Contact/Contact'
-import Home from './Home/Home'
 import Compare from './Compare/Compare'
 import Signin from './Login/Signin'
 import Signup from './Login/Signup'
@@ -37,10 +35,8 @@ const Body = (props) => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/' element={<Compare />} />
         <Route path='/about' element={<About />} />
-        <Route path='/compare' element={<Compare />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='*' element={<h1>Sorry page not found</h1>} />

@@ -26,13 +26,10 @@ const Header = (props) => {
                 <Collapse isOpen={open} navbar>
                     <Nav className='ms-auto' navbar>
                         <NavItem className='mx-2'>
-                            <Link className='text-light text-decoration-none' to='/compare'>Compare</Link>
+                            <Link className='text-light text-decoration-none' to='/'>Compare</Link>
                         </NavItem>
                         <NavItem className='mx-2'>
                             <Link className='text-light text-decoration-none' to='/about'>About</Link>
-                        </NavItem>
-                        <NavItem className='mx-2'>
-                            <Link className='text-light text-decoration-none' to='/contact'>Contact</Link>
                         </NavItem>
                         <NavItem className='mx-2'>
                             <Link className='text-light text-decoration-none' to='/signin'>Login</Link>
