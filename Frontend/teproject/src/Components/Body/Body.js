@@ -6,6 +6,7 @@ import About from './About/About'
 import Compare from './Compare/Compare'
 import Signin from './Login/Signin'
 import Signup from './Login/Signup'
+import Logout from './Logout/Logout'
 
 
 const mapStateToProps = (state) => {
@@ -39,6 +40,7 @@ const Body = (props) => {
         <Route path='/about' element={<About />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='*' element={<h1>Sorry page not found</h1>} />
         {admin}
       </Routes>

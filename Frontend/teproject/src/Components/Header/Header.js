@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 
 
 const mapStateToProps = (state) => {
+    console.log(state.authenticated)
     return {
-
+        authenticated: state.authenticated
     }
 }
 
@@ -32,7 +33,7 @@ const Header = (props) => {
                             <Link className='text-light text-decoration-none' to='/about'>About</Link>
                         </NavItem>
                         <NavItem className='mx-2'>
-                            <Link className='text-light text-decoration-none' to='/signin'>Login</Link>
+                            {props.authenticated ? <Link className='text-light text-decoration-none' to='/logout'>Logout</Link> : <Link className='text-light text-decoration-none' to='/signin'>Login</Link>}
                         </NavItem>
                     </Nav>
 

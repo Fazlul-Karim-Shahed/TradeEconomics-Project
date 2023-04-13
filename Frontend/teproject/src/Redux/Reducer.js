@@ -1,5 +1,5 @@
 
-import { AUTHENTICATED } from './ActionTypes'
+import { AUTHENTICATED, LOGOUT } from './ActionTypes'
 
 const initialState = {
     text: 'Hello world',
@@ -12,7 +12,6 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-
     if (action.type === AUTHENTICATED.type) {
 
         return {

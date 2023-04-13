@@ -9,7 +9,6 @@ import Footer from './Footer/Footer'
 
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     decodedToken: state.decodedToken
   }

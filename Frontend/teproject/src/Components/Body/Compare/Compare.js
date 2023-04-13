@@ -8,6 +8,7 @@ import History from '../History/History'
 import { CreateHistoryApi, GetHistoryApi } from '../../../Api/HistoryApi'
 import { HISTORY_UPDATE } from '../../../Redux/ActionTypes'
 import { checkAuth } from '../../../Functions/AuthFunctions'
+import Spinner from '../../Body/Spinner/Spinner'
 
 
 const mapStateToProps = (state) => {
@@ -42,9 +43,10 @@ const Compare = (props) => {
           }}
 
           onSubmit={(values) => {
+            setSpinner(true)
             getCompareApi(values.country1, values.country2, values.indicator).then(data => {
 
-              if (data.error || data.name === 'AxiosError') throw data.message
+              if (data.error || data.name === 'AxiosError') throw data.Message
               else {
                 setMessage(data.Message)
                 setChartData({
@@ -55,8 +57,9 @@ const Compare = (props) => {
                   country1: values.country1,
                   country2: values.country2
                 })
-
+                setSpinner(false)
                 if (checkAuth()) {
+                  setSpinner(true)
                   CreateHistoryApi({
                     country_1: values.country1,
                     country_2: values.country2,
@@ -64,6 +67,7 @@ const Compare = (props) => {
                     userId: props.decodedToken._id,
                     indicator: values.indicator
                   }).then(data => {
+                    setSpinner(false)
                     GetHistoryApi(props.decodedToken._id).then(data => props.dispatch(HISTORY_UPDATE(data.value ? data.value : [])))
                   })
                 }
@@ -71,7 +75,11 @@ const Compare = (props) => {
 
               }
             })
-              .catch(err => setMessage(err))
+              .catch(err => {
+                setSpinner(false)
+                console.log(err)
+                setMessage(err)
+              })
           }}
 
         >
@@ -121,6 +129,7 @@ const Compare = (props) => {
       <div>
         <CompareChart data={chartData} />
         <History />
+        {spinner ? <Spinner /> : ''}
       </div>
 
     </div>

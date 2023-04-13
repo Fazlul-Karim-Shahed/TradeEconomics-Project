@@ -8,9 +8,10 @@ import { SET_AUTH } from '../../../Redux/ActionTypes'
 import { saveTokenToLocal } from '../../../Functions/AuthFunctions'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import Spinner from '../../Body/Spinner/Spinner'
 
 const mapStateToProps = (state) => {
-
+  console.log(state)
   return {
 
   }
@@ -21,6 +22,7 @@ const Signup = (props) => {
   let navigate = useNavigate()
 
   const [message, setMessage] = useState('')
+  const [spinner, setSpinner] = useState(false)
 
 
 
@@ -34,21 +36,26 @@ const Signup = (props) => {
         }}
 
         onSubmit={values => {
+          setSpinner(true)
           let data = SigninApi(values).then(data => {
 
             if (data.name === 'AxiosError' || data.error) throw data.message
             else {
-              // setMessage(data.message)
+
               let decoded = jwt_decode(data.value.token)
               saveTokenToLocal(decoded)
               props.dispatch(SET_AUTH(decoded))
               window.location.replace('/')
+              setSpinner(false)
               return navigate('/')
 
             }
 
           })
-            .catch(err => setMessage(err))
+            .catch(err => {
+              setSpinner(false)
+              setMessage(err)
+            })
         }}
 
       >
@@ -72,6 +79,7 @@ const Signup = (props) => {
         )}
 
       </Formik>
+      {spinner ? <Spinner /> : ''}
     </div>
   )
 }
