@@ -6,7 +6,7 @@ const getCompareData = async (req, res) => {
 
     try {
 
-        te.login('fa336d9d1b2845d:zuko6pzmfukwj7o')
+        te.login(process.env.TE_LOGIN_KEY)
 
         const country_1 = req.query.country1
         const country_2 = req.query.country2

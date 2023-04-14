@@ -3,10 +3,11 @@ const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const mongoose = require('mongoose')
+
 const CompareRouter = require('./Routers/CompareRouter')
 const HistoryRouter = require('./Routers/HistoryRouter')
 const UserRouter = require('./Routers/UserRouter')
-// const SignupRouter = require('./Routers/SignupRouter')
+
 
 dotenv.config()
 const app = express()
